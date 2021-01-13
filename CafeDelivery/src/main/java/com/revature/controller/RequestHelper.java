@@ -14,20 +14,31 @@ public class RequestHelper {
 		System.out.println(endpoint);
 
 		switch (endpoint) {
+		case "/CafeDelivery/api/landing":
+			System.out.println("Hit the LANDING route");
+			AuthController.getLandingPage(req, resp);
+			break;
+		case "/CafeDelivery/api/main":
+			System.out.println("Hit the MAIN route");
+			MainPageController.getHomePage(req, resp);
+			break;
 		case "/CafeDelivery/api/login":
 			System.out.println("Hit the LOGIN route");
-//			AuthController.login(req, resp);
+			AuthController.login(req, resp);
 			break;
 		case "/CafeDelivery/api/logout":
 			System.out.println("Hit the LOGOUT route");
+			AuthController.logout(req, resp);
 			break;
-		case "/CafeDelivery/api/client":
+		case "/CafeDelivery/api/customer":
 			switch (req.getMethod()) {
 			case "GET":
 				System.out.println("Hit the CLIENT GET route");
+				CustomerController.getAllUsers(req, resp);
 				break;
 			case "POST":
 				System.out.println("Hit the CLIENT POST route");
+				CustomerController.insertCustomer(req, resp);
 				break;
 			}
 			break;
@@ -35,20 +46,16 @@ public class RequestHelper {
 			switch (req.getMethod()) {
 			case "GET":
 				System.out.println("Hit the ORDER GET route");
+				OrderController.getAllOrdersByUsername(req, resp);
 				break;
 			case "POST":
 				System.out.println("Hit the ORDER POST route");
-				break;
-			case "PUT":
-				System.out.println("Hit the ORDER PUT route");
-				break;
-			case "DELETE":
-				System.out.println("Hit the ORDER DELETE route");
+				OrderController.insertOrder(req, resp);
 				break;
 			}
 			break;
 		default:
-			System.out.println("Didn't hit any RH routes");
+//			System.out.println("Didn't hit any RH routes");
 			break;
 		}
 	}
