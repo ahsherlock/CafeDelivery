@@ -8,58 +8,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.revature.pojo.Customer;
+
 public class AuthController {
 	// Needs Service
 	public static void login(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
 		if (req.getMethod().equals("POST")) {
 
-//			Employee e = null;
+			Customer c = null;
 
-			String email = req.getParameter("email");
+			String username = req.getParameter("username");
 
-//			e = eService.getUserByEmail(email);
-//			System.out.println("This is printing out e: " + e);
+			// To be implemented in the Service layer
+//			c = cService.getUserById(username);
 
-			if (req.getParameter("email").equals(e.getEmail())) {
+			if (req.getParameter("username").equals(c.getUsername())) {
+				if (req.getParameter("password").equals(c.getPassword())) {
 
-				if (req.getParameter("password").equals(e.getPassword())) {
-					// if username matches the masterUsere we will define a session
-					if (e.getIsFM() == true) {
-						System.out.println("Logging in as FM");
-						HttpSession sesh = req.getSession();
-						sesh.setAttribute("MasterAccess", true);
-						sesh.setAttribute("Client", false);
-						sesh.setAttribute("currentId", e.getEId());
-						sesh.setAttribute("FirstName", e.getFirstName());
-						sesh.setAttribute("LastName", e.getLastName());
-						sesh.setAttribute("Email", e.getEmail());
-						resp.sendRedirect("http://localhost:8080/P1/api/home");
+					HttpSession sesh = req.getSession();
+					sesh.setAttribute("Customer", true);
+					sesh.setAttribute("FirstName", c.getFirstName());
+					sesh.setAttribute("LastName", c.getLastName());
+					sesh.setAttribute("Username", c.getUsername());
 
-//						log.setLevel(Level.ALL);
-//						log.info("User: " + e.getFirstName() + " " + e.getLastName() + ", " + e.getEmail()
-//								+ " has logged in.");
-
-					} else {ja
-						System.out.println("Logging in as Client");
-						HttpSession sesh = req.getSession();
-						sesh.setAttribute("Client", true);
-						sesh.setAttribute("MasterAccess", false);
-						sesh.setAttribute("currentId", e.getEId());
-						sesh.setAttribute("FirstName", e.getFirstName());
-						sesh.setAttribute("LastName", e.getLastName());
-						sesh.setAttribute("Email", e.getEmail());
-						resp.sendRedirect("http://localhost:8080/P1/api/home");
-
-//						log.setLevel(Level.ALL);
-//						log.info("User: " + e.getFirstName() + " " + e.getLastName() + ", " + e.getEmail()
-//								+ " has logged in.");
-					}
+					//
+					resp.sendRedirect("http://localhost:8080/P1/api/home");
 				} else {
 					resp.setStatus(403);
+					// Send to Error page?
 //					resp.sendRedirect("http://localhost:8080/PlanetAPI/api/landing");
-//					req.setAttribute("errorMessage", "Invalid Password");
-//					req.getRequestDispatcher("/order.jsp").forward(req, resp);
+
 				}
 
 			} else {
@@ -72,7 +51,7 @@ public class AuthController {
 
 		} else {
 
-			// invalide method
+			// invalidate method
 			resp.setStatus(405);
 			resp.sendRedirect("http://localhost:8080/PlanetAPI/api/landing");
 		}
@@ -89,10 +68,10 @@ public class AuthController {
 
 		req.getSession().invalidate();
 
-		resp.sendRedirect("http://localhost:8080/P1/api/landing");
+		resp.sendRedirect("http://localhost:8080/CafeDelivery/api/main");
 	}
 
-	public static void getLandingPage(HttpServletRequest req, HttpServletResponse resp)
+	public static void getMainPage(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
 		RequestDispatcher redis = req.getRequestDispatcher("/index.html");
