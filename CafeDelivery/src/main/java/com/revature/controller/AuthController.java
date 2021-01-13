@@ -40,7 +40,7 @@ public class AuthController {
 //						log.info("User: " + e.getFirstName() + " " + e.getLastName() + ", " + e.getEmail()
 //								+ " has logged in.");
 
-					} else {
+					} else {ja
 						System.out.println("Logging in as Client");
 						HttpSession sesh = req.getSession();
 						sesh.setAttribute("Client", true);
