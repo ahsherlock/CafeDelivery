@@ -3,10 +3,15 @@
   <display-name>CafeDelivery</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>MasterServ</display-name>
+    <servlet-name>MasterServ</servlet-name>
+    <servlet-class>com.revature.servlet.MasterServ</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MasterServ</servlet-name>
+    <url-pattern>/MasterServ</url-pattern>
+  </servlet-mapping>
 </web-app>
