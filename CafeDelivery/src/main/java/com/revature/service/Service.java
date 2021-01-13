@@ -4,20 +4,23 @@ import java.util.List;
 
 import com.revature.pojo.Customer;
 import com.revature.pojo.Orders;
+import com.revature.dao.*;
 
 public class Service {
-//	private static  CustomerDao cDao = new CustomerDaoImpl();
-//	private static OrdersDao oDao = new OrdersDaoImpl();
+	private static  CustomerDao cDao = new CustomerDaoImpl();
+	private static OrderDao oDao = new OrderDaoImpl();
 
 	// Get All Customers (For validation and authentication)
-	public List<Customer> getAllUsers() {
-		return cDao.getAllUsers();
-	}
+//	public List<Customer> getAllUsers() {
+//		return cDao.getAllUsers();
+//	}
 
 	// Get Customer by Email
 	public Customer getUserByUsername(String username) {
-		if (!(cDao.selectEmployeeByEmail(username) == null)) {
-			return cDao.selectEmployeeByEmail(username);
+		Customer c = cDao.getUserByUsername(username);
+		//removed redundancies 
+		if (c != null) {
+			return c;
 		} else {
 			return null;
 		}
@@ -26,7 +29,8 @@ public class Service {
 	// Register new Customer
 	public boolean insertCustomer(Customer c) {
 		System.out.println("reached Service");
-		if (cDao.insertCustomer(c)) {
+		//no longer using boolean in insertCustomer, checking is now done here
+		if (cDao.getUserByUsername(c.getUsername()) != null) {
 			System.out.println("Successfully Registered!");
 			return true;
 		} else {
@@ -36,15 +40,16 @@ public class Service {
 	}
 
 	// Get all Orders by Username
-	public List<Orders> getOrdersByUsername(String username) {
+	public List<Integer> getOrdersByCustomerId(int id) {
 		System.out.println("Reached Service");
-		return oDao.getOrdersByUsername(username);
+		return oDao.getOrdersByCustomerId(id);
 	}
 
 	// Insert new Order
 	public boolean insertOrder(Orders o) {
 		System.out.println("Reached service");
-		if (oDao.insertOrder(o)) {
+		//no longer using boolean in insertOrder, checking is now done here
+		if (oDao.getOrderByOrderId(o.getOrderId()) != null) {
 			System.out.println("Service: Order Successfully Created: " + o);
 			return true;
 		} else {
