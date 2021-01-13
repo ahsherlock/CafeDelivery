@@ -14,9 +14,13 @@ public class RequestHelper {
 		System.out.println(endpoint);
 
 		switch (endpoint) {
+		case "/CafeDeliver/api/landing":
+			System.out.println("Hit the LANDING route");
+			AuthController.getLandingPage(req, resp);
+			break;
 		case "/CafeDelivery/api/main":
 			System.out.println("Hit the MAIN route");
-			AuthController.getMainPage(req, resp);
+			MainPageController.getHomePage(req, resp);
 			break;
 		case "/CafeDelivery/api/login":
 			System.out.println("Hit the LOGIN route");

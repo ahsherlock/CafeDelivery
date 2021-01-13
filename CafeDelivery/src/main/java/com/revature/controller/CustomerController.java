@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.pojo.Customer;
+import com.revature.service.Service;
 
 public class CustomerController {
 
-//	private static Service cService = new Service();
+	private static Service cService = new Service();
 
 	public static boolean insertCustomer(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -30,7 +31,7 @@ public class CustomerController {
 
 			Customer c = new Customer(id, username, password, fname, lname);
 
-//			cService.insertCustomer(c);
+			cService.insertCustomer(c);
 
 			RequestDispatcher redis = req.getRequestDispatcher("/CafeDelivery/api/main");
 			redis.forward(req, resp);
@@ -43,16 +44,16 @@ public class CustomerController {
 		return false;
 	}
 
-	public static List<Customer> getAllCustomers(HttpServletRequest req, HttpServletResponse resp)
+	public static List<Customer> getAllUsers(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
 		if (req.getMethod().equals("GET")) {
 
-			Customer c = null;
+			List<Customer> c = null;
 
 			resp.setContentType("application/json");
 
-//			c = cService.getAllCustomers();
+			c = cService.getAllUsers();
 
 			ObjectMapper om = new ObjectMapper();
 			resp.getWriter().write(om.writeValueAsString(c));
@@ -64,29 +65,5 @@ public class CustomerController {
 		}
 
 	}
-
-//	public static Customer getCustomerByUsername(HttpServletRequest req, HttpServletResponse resp)
-//			throws ServletException, IOException {
-//
-//		if (req.getMethod().equals("GET")) {
-//
-//			Customer c = null;
-//
-//			resp.setContentType("application/json");
-//
-//			String username = req.getParameter("Username");
-//
-////			c = cService.getCustomerByUsername(username);
-//
-//			ObjectMapper om = new ObjectMapper();
-//			resp.getWriter().write(om.writeValueAsString(c));
-//			resp.setStatus(200);
-//			return c;
-//		} else {
-//			resp.setStatus(400);
-//			return null;
-//		}
-//
-//	}
 
 }

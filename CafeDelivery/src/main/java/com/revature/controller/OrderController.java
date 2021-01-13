@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.pojo.Orders;
+import com.revature.service.Service;
 
 public class OrderController {
 
-//	private static Service oService = new Service();
+	private static Service oService = new Service();
 //	private static Logger log = Logger.getLogger(OrderController.class);
 
 	public static boolean insertOrder(HttpServletRequest req, HttpServletResponse resp)
@@ -28,10 +29,10 @@ public class OrderController {
 
 			// Need to set this to capture user information
 //			o.setCustomerOrder((Integer) req.getSession().getAttribute("currentId"));
-//			o.setCustomerOrder(oService.getCustomerByUsername(req.getSession().getAttribute("Username")));
+			o.setCustomerOrder(oService.getUserByUsername((String) req.getSession().getAttribute("Username")));
 
 			System.out.println("This is O before it goes to service: " + o);
-//			oService.insertOrder(o);
+			oService.insertOrder(o);
 
 			// This needs to change to the customer asset, not the index
 			RequestDispatcher redis = req.getRequestDispatcher("/index.html");
@@ -57,9 +58,9 @@ public class OrderController {
 			System.out.println("Reached Ticket Controller");
 			List<Orders> o = null;
 
-//			String username = req.getSession().getAttribute("Username");
+			String username = (String) req.getSession().getAttribute("Username");
 
-//			o = tService.getOrdersByUsername(username);
+			o = oService.getOrdersByUsername(username);
 
 			ObjectMapper om = new ObjectMapper();
 			resp.getWriter().write(om.writeValueAsString(o)); // This will parse our Java object into a JSON

@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.revature.pojo.Customer;
+import com.revature.service.Service;
 
 public class AuthController {
-	// Needs Service
+
+	private static Service cService = new Service();
+
 	public static void login(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
 		if (req.getMethod().equals("POST")) {
@@ -21,7 +24,7 @@ public class AuthController {
 			String username = req.getParameter("username");
 
 			// To be implemented in the Service layer
-//			c = cService.getUserById(username);
+			c = cService.getUserByUsername(username);
 
 			if (req.getParameter("username").equals(c.getUsername())) {
 				if (req.getParameter("password").equals(c.getPassword())) {
@@ -33,11 +36,11 @@ public class AuthController {
 					sesh.setAttribute("Username", c.getUsername());
 
 					//
-					resp.sendRedirect("http://localhost:8080/P1/api/home");
+					resp.sendRedirect("http://localhost:8080/CafeDelivery/api/main");
 				} else {
 					resp.setStatus(403);
 					// Send to Error page?
-//					resp.sendRedirect("http://localhost:8080/PlanetAPI/api/landing");
+//					resp.sendRedirect("http://localhost:8080/CafeDelivery/api/main");
 
 				}
 
@@ -45,7 +48,7 @@ public class AuthController {
 				System.out.println("Invalid Email");
 				// invalid credentials
 				resp.setStatus(403);
-//				resp.sendRedirect("http://localhost:8080/PlanetAPI/api/landing");
+				resp.sendRedirect("http://localhost:8080/CafeDelivery/api/landing");
 				req.setAttribute("errorMessage", "User Does Not Exist");
 			}
 
@@ -53,7 +56,7 @@ public class AuthController {
 
 			// invalidate method
 			resp.setStatus(405);
-			resp.sendRedirect("http://localhost:8080/PlanetAPI/api/landing");
+			resp.sendRedirect("http://localhost:8080/CafeDelivery/api/landing");
 		}
 
 	}
@@ -68,10 +71,10 @@ public class AuthController {
 
 		req.getSession().invalidate();
 
-		resp.sendRedirect("http://localhost:8080/CafeDelivery/api/main");
+		resp.sendRedirect("http://localhost:8080/CafeDelivery/api/landing");
 	}
 
-	public static void getMainPage(HttpServletRequest req, HttpServletResponse resp)
+	public static void getLandingPage(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
 		RequestDispatcher redis = req.getRequestDispatcher("/index.html");
