@@ -19,7 +19,7 @@ public class AuthController {
 			String email = req.getParameter("email");
 
 //			e = eService.getUserByEmail(email);
-			System.out.println("This is printing out e: " + e);
+//			System.out.println("This is printing out e: " + e);
 
 			if (req.getParameter("email").equals(e.getEmail())) {
 
