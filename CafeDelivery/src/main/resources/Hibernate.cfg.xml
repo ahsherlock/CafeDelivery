@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+        
+ 
+	 <hibernate-configuration>
+	 	<session-factory>
+	 		<!-- JDBC stuff -->
+	 		<property name = "hibernate.connection.username"></property>
+	 		<property name = "hibernate.connection.password"></property>
+	 		<property name = "hibernate.connection.url"></property>
+	 		<property name = "hibernate.connection.driver_class">org.postgresql.Driver</property>
+	 		<property name = "hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+	 		
+	 		<!-- Additional Hibernate Options -->
+	 		
+	 		<property name = "hibernate.show_sql">true</property> <!-- Show the sql scripts being executed -->
+	 		<property name="hibernate.format_sql">true</property> <!-- makes it more human readable -->
+	 		
+	 		<!--  Connection Pool 
+	 			A method of speeding up database calls. 
+	 			Hibernate will create n connections to the database when it starts up (default is 20)
+	 			Everytime a session is created, a session will "borrow" an active connection 
+	 			When you close a session, the connection is freed up for another session to use.
+	 		 -->
+	 		 
+	 		 <property name = "hibernate.connection.pool_size">10</property>
+	 		 
+	 		 <!--  4 settings for hbm2ddl.auto 
+	 		 		CREATE: drops all existing tables & other object with names you have provided in the annotation
+	 		 				The Hibernate will create you schema from scratch (Not the best for prodduction. only for developemnt)
+	 		 		VALIDATE: Hibernate checks to make sure the schema exists as expected before operating
+	 		 		UPDATE: Hibernate will not delete anything, it'll only add/modify existing scheme elements. So the schema works with the Hibernate schema.
+	 		 		NONE: nothing
+	 		 		
+	 		 -->
+	 		 
+	 		 <property name="hibernate.hbm2ddl.auto">create</property>
+	 		 
+	 		 <mapping class = "com.revature.pojo.Customer"/>	
+	 	     <mapping class = "com.revature.pojo.Menu"/>
+	 		 <mapping class = "com.revature.pojo.Orders"/>
+	 		 
+	 	</session-factory>
+	 </hibernate-configuration>
