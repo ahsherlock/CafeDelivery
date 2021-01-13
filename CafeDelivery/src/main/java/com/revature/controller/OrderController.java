@@ -50,7 +50,7 @@ public class OrderController {
 		return false;
 	}
 
-	public static boolean getAllOrdersByClientId(HttpServletRequest req, HttpServletResponse resp)
+	public static boolean getAllOrdersByUsername(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
 		if (req.getMethod().equals("GET")) {
