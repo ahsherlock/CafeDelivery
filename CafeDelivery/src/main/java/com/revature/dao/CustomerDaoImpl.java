@@ -16,10 +16,11 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public Customer getUserByUsername(String username) {
 		Session ses = HibernateUtil.getSession();
+		
 		List<Customer> cList = new ArrayList<Customer>();
-		Query query = ses.createQuery("from Customer where description = :username");
+		Query query = ses.createQuery("from Customer c where c.username = :username");
         query.setParameter("username", username);
-        cList.add((Customer) query.getResultList());
+        cList = query.getResultList();
 		return cList.get(0);
 	}
 
@@ -29,7 +30,6 @@ public class CustomerDaoImpl implements CustomerDao {
 		Transaction tx = ses.beginTransaction();
 		ses.save(c);
 		tx.commit();
-		ses.close();
 		return false;
 	}
 

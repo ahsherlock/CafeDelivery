@@ -34,19 +34,20 @@ public class MainDriver {
         oDao.insertOrder(ord1);
         oDao.insertOrder(ord2);
         
-        System.out.println(cDao.getUserByUsername("user1"));
+        System.out.println("User by username reutrns: " + cDao.getUserByUsername("user1"));
         System.out.println(oDao.getOrderByOrderId(1));
         System.out.println(oDao.getOrderByOrderId(2));
         System.out.println(oDao.getOrderByOrderId(3));
  
         System.out.println(cDao.insertCustomer(new Customer(2, "temp", "temp", "temp", "temp" )));
-        System.out.println(cDao.getUserByUsername("temp"));
+        System.out.println("User by username reutrns: " + cDao.getUserByUsername("temp"));
         
         oDao.insertOrder(new Orders(4,cust, menuList));
  
         System.out.println(oDao.getOrdersByCustomerId(1));
-        
 
+        
+        
 	}
 	
 }
