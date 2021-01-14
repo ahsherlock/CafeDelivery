@@ -2,4 +2,6 @@
 .DS_Store
 
 .env
+
+.Hibernate.cfg.xml
 /.metadata/

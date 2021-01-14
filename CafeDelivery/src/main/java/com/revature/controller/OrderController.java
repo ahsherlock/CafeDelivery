@@ -8,6 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.pojo.Orders;
 import com.revature.service.Service;
@@ -15,7 +18,7 @@ import com.revature.service.Service;
 public class OrderController {
 
 	private static Service oService = new Service();
-//	private static Logger log = Logger.getLogger(OrderController.class);
+	private static Logger log = Logger.getLogger(OrderController.class);
 
 	public static boolean insertOrder(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -28,7 +31,6 @@ public class OrderController {
 			System.out.println("Reached Order Controller");
 
 			// Need to set this to capture user information
-//			o.setCustomerOrder((Integer) req.getSession().getAttribute("currentId"));
 			o.setCustomerOrder(oService.getUserByUsername((String) req.getSession().getAttribute("Username")));
 
 			System.out.println("This is O before it goes to service: " + o);
@@ -38,10 +40,10 @@ public class OrderController {
 			RequestDispatcher redis = req.getRequestDispatcher("/index.html");
 			redis.forward(req, resp);
 
-//			log.setLevel(Level.ALL);
-//			log.info("User: " + req.getSession().getAttribute("FirstName") + " "
-//					+ req.getSession().getAttribute("LastName") + ", " + req.getSession().getAttribute("Email")
-//					+ " has submitted a new ticket.");
+			log.setLevel(Level.ALL);
+			log.info("User: " + req.getSession().getAttribute("FirstName") + " "
+					+ req.getSession().getAttribute("LastName") + ", " + req.getSession().getAttribute("Email")
+					+ " has submitted a new ticket.");
 
 			resp.setStatus(201);
 		} else {
@@ -58,9 +60,10 @@ public class OrderController {
 			System.out.println("Reached Ticket Controller");
 			List<Orders> o = null;
 
-			String username = (String) req.getSession().getAttribute("Username");
+			int cId = (int) req.getSession().getAttribute("CustomerId");
+//			String username = (String) req.getSession().getAttribute("Username");
 
-			o = oService.getOrdersByUsername(username);
+			oService.getOrdersByCustomerId(cId);
 
 			ObjectMapper om = new ObjectMapper();
 			resp.getWriter().write(om.writeValueAsString(o)); // This will parse our Java object into a JSON

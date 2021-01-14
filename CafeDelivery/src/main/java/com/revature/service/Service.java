@@ -2,12 +2,15 @@ package com.revature.service;
 
 import java.util.List;
 
+import com.revature.dao.CustomerDao;
+import com.revature.dao.CustomerDaoImpl;
+import com.revature.dao.OrderDao;
+import com.revature.dao.OrderDaoImpl;
 import com.revature.pojo.Customer;
 import com.revature.pojo.Orders;
-import com.revature.dao.*;
 
 public class Service {
-	private static  CustomerDao cDao = new CustomerDaoImpl();
+	private static CustomerDao cDao = new CustomerDaoImpl();
 	private static OrderDao oDao = new OrderDaoImpl();
 
 	// Get All Customers (For validation and authentication)
@@ -15,10 +18,10 @@ public class Service {
 //		return cDao.getAllUsers();
 //	}
 
-	// Get Customer by Email
+	// Get Customer by Username
 	public Customer getUserByUsername(String username) {
 		Customer c = cDao.getUserByUsername(username);
-		//removed redundancies 
+		// removed redundancies
 		if (c != null) {
 			return c;
 		} else {
@@ -29,8 +32,9 @@ public class Service {
 	// Register new Customer
 	public boolean insertCustomer(Customer c) {
 		System.out.println("reached Service");
-		//no longer using boolean in insertCustomer, checking is now done here
-		if (cDao.getUserByUsername(c.getUsername()) != null) {
+		// no longer using boolean in insertCustomer, checking is now done here
+		if (cDao.getUserByUsername(c.getUsername()) == null) {
+			cDao.insertCustomer(c);
 			System.out.println("Successfully Registered!");
 			return true;
 		} else {
@@ -48,7 +52,7 @@ public class Service {
 	// Insert new Order
 	public boolean insertOrder(Orders o) {
 		System.out.println("Reached service");
-		//no longer using boolean in insertOrder, checking is now done here
+		// no longer using boolean in insertOrder, checking is now done here
 		if (oDao.getOrderByOrderId(o.getOrderId()) != null) {
 			System.out.println("Service: Order Successfully Created: " + o);
 			return true;

@@ -11,7 +11,12 @@ public class RequestHelper {
 	public static void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String endpoint = req.getRequestURI();
-		System.out.println(endpoint);
+//		System.out.println(endpoint);
+
+		/**
+		 * When the user hits one of the following routes (with the matching VERB)
+		 * 
+		 */
 
 		switch (endpoint) {
 		case "/CafeDelivery/api/landing":
@@ -32,10 +37,10 @@ public class RequestHelper {
 			break;
 		case "/CafeDelivery/api/customer":
 			switch (req.getMethod()) {
-			case "GET":
-				System.out.println("Hit the CLIENT GET route");
-				CustomerController.getAllUsers(req, resp);
-				break;
+//			case "GET":
+//				System.out.println("Hit the CLIENT GET route");
+//				CustomerController.getAllUsers(req, resp);
+//				break;
 			case "POST":
 				System.out.println("Hit the CLIENT POST route");
 				CustomerController.insertCustomer(req, resp);
