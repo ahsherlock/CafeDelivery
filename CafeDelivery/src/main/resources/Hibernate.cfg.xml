@@ -36,7 +36,7 @@
 	 		 		
 	 		 -->
 	 		 
-	 		 <property name="hibernate.hbm2ddl.auto">create</property>
+	 		 <property name="hibernate.hbm2ddl.auto">update</property>
 	 		 
 	 		 <mapping class = "com.revature.pojo.Customer"/>	
 	 	     <mapping class = "com.revature.pojo.Menu"/>

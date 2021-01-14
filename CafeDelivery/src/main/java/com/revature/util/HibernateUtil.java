@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
 	
-	private static SessionFactory sf = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+	private static SessionFactory sf = new Configuration().configure("Hibernate.cfg.xml").buildSessionFactory();
 
     private static Session sesh; //This is our Global Session Object
 
