@@ -12,11 +12,8 @@ import javax.persistence.Table;
 @Table(name = "menu")
 public class Menu {
 	
-	@Id
-	@Column(name = "item_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int itemId;
 	
+	@Id
 	@Column(name="item_name", unique=true, nullable = false)
 	private String itemName;
 	
@@ -27,20 +24,13 @@ public class Menu {
 		super();
 	}
 
-	public Menu(int itemId, String itemName, double itemPrice) {
+	public Menu(String itemName, double itemPrice) {
 		super();
-		this.itemId = itemId;
 		this.itemName = itemName;
 		this.itemPrice = itemPrice;
 	}
 
-	public int getItemId() {
-		return itemId;
-	}
 
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
-	}
 
 	public String getItemName() {
 		return itemName;
@@ -60,7 +50,7 @@ public class Menu {
 
 	@Override
 	public String toString() {
-		return "Menu [itemId=" + itemId + ", itemName=" + itemName + ", itemPrice=" + itemPrice + "]";
+		return "Menu [itemName=" + itemName + ", itemPrice=" + itemPrice + "]";
 	}
 	
 	
