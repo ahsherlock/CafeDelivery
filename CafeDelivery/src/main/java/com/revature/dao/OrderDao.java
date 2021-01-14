@@ -24,8 +24,6 @@ public interface OrderDao {
 	 * Inserts an order into the database
 	 */
 	public void insertOrder(Orders o);
-	
-	//George we are making you do more work :)
-	
+		
 	
 }
