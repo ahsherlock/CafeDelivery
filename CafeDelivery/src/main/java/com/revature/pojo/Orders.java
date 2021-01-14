@@ -29,17 +29,17 @@ public class Orders {
 	private Customer customerOrder;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Menu> item_id;
+	private List<Menu> item_name;
 
 	public Orders() {
 		super();
 	}
 
-	public Orders(int orderId, Customer customerOrder, List<Menu> item_id) {
+	public Orders(int orderId, Customer customerOrder, List<Menu> item_name) {
 		super();
 		this.orderId = orderId;
 		this.customerOrder = customerOrder;
-		this.item_id = item_id;
+		this.item_name = item_name;
 	}
 
 	public int getOrderId() {
@@ -58,17 +58,17 @@ public class Orders {
 		this.customerOrder = customerOrder;
 	}
 
-	public List<Menu> getItem_id() {
-		return item_id;
+	public List<Menu> getItem_name() {
+		return item_name;
 	}
 
-	public void setItem_id(List<Menu> item_id) {
-		this.item_id = item_id;
+	public void setItem_name(List<Menu> item_name) {
+		this.item_name = item_name;
 	}
 
 	@Override
 	public String toString() {
-		return "Orders [orderId=" + orderId + ", customerOrder=" + customerOrder + ", item_id=" + item_id + "]";
+		return "Orders [orderId=" + orderId + ", customerOrder=" + customerOrder + ", item_name=" + item_name + "]";
 	}
 	
 	

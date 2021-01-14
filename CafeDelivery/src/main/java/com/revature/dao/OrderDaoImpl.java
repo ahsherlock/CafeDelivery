@@ -26,7 +26,6 @@ public class OrderDaoImpl implements OrderDao{
 		for (Orders o : orderList) {
 			orderNumbers.add(o.getOrderId());
 		}
-		
 		return orderNumbers;
 	}
 
@@ -35,7 +34,7 @@ public class OrderDaoImpl implements OrderDao{
 		Session ses = HibernateUtil.getSession();
 		List<Menu> oList = new ArrayList<>();
 		
-		oList = ses.createQuery("select menu from Orders ord join ord.item_id menu where ord.orderId = :id", Menu.class).setInteger("id", id).list(); 
+		oList = ses.createQuery("select menu from Orders ord join ord.item_name menu where ord.orderId = :id", Menu.class).setInteger("id", id).list(); 
 		
 		return oList;
 	}
