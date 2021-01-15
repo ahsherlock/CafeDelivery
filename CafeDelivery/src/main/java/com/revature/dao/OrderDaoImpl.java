@@ -3,60 +3,49 @@ package com.revature.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.ScrollMode;
-import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.Query;
 
-import com.revature.pojo.Customer;
-import com.revature.pojo.Menu;
-import com.revature.pojo.Orders;
-import com.revature.util.HibernateUtil;
+import com.revature.models.OrderView;
+import com.revature.models.Orders;
+import com.revature.utils.CafeConnection;
 
-public class OrderDaoImpl implements OrderDao{
-
-	@Override
-	public List<Integer> getOrdersByCustomerId(int id) {
-		Session ses = HibernateUtil.getSession();
-		List<Orders> orderList = null;
-		orderList = ses.createQuery("from Orders where customerOrder = :id", Orders.class).setInteger("id", id).list();
-		List<Integer> orderNumbers = new ArrayList<Integer>();
-		for (Orders o : orderList) {
-			orderNumbers.add(o.getOrderId());
-		}
-		return orderNumbers;
-	}
-
-	@Override
-	public List<Menu> getOrderByOrderId(int id) {
-		Session ses = HibernateUtil.getSession();
-		List<Menu> oList = new ArrayList<>();
-		
-		oList = ses.createQuery("select menu from Orders ord join ord.item_name menu where ord.orderId = :id", Menu.class).setInteger("id", id).list(); 
-		
-		return oList;
-	}
+public class OrderDaoImpl implements OrderDao {
 
 	@Override
 	public void insertOrder(Orders o) {
-		Session ses = HibernateUtil.getSession();
+		Session ses = CafeConnection.getSession();
 		Transaction tx = ses.beginTransaction();
-		
 		ses.save(o);
 		tx.commit();
 	}
 
+	@Override
+	public List<OrderView> getOrderByCustomerId(int cid) {
+		Session ses = CafeConnection.getSession();
+//		ses.beginTransaction().commit();
+//		orderList = ses.createQuery("from order_view where customerId = :id", OrderView.class).setInteger("id", cid)
+//				.list();
+//		orderList = ses.createQuery("from order_view where customerId = :id", OrderView.class).setParameter("id", cid)
+//				.list();
+		List<OrderView> orders = new ArrayList<>();
+//		OrderView orderview = ses.get(OrderView.class, cid);
+//		orders = ses.createQuery("from OrderView where customerId = " + cid, OrderView.class).list();
+		orders = ses.createNativeQuery(
+				"select o.order_id, o.order_date, o.c_id, c.c_firstname, c.c_lastname, od.item_id, cm.item_name, cm.item_price from orders o"
+						+ "	inner join customers c on c.c_id = o.c_id"
+						+ "		inner join order_details od on od.order_id = o.order_id"
+						+ "		inner join cafe_menu cm on cm.item_id = od.item_id where o.c_id =" + cid,
+				OrderView.class).list();
+
+//		System.out.println("orderview: " + orders);
+
+//		orders.add(orderview);
+//		for (OrderView o : orderview) {
+//			orders.add(o);
+//		}
+
+		return orders;
+	}
+
 }
-
-
-/**
-	
-	public Orders(int orderId, Customer customerOrder, List<Menu> item_id
-	
-	select ot.order_id, m.item_id, m.item_name, m.item_price
-	from order_table ot left outer join order_table_menu otm on 
-	ot.order_id = otm.orders_order_id
-	left outer join menu m on m.item_id = otm.item_id;
-*/

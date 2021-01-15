@@ -3,16 +3,16 @@ package com.revature.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.revature.models.Customers;
+import com.revature.models.CafeMenu;
 import com.revature.utils.CafeConnection;
 
-public class CustomerDaoImpl implements CustomerDao {
+public class CafeMenuDaoImpl implements CafeMenuDao {
 
 	@Override
-	public void insertCustomer(Customers c) {
+	public void insertMenu(CafeMenu cm) {
 		Session ses = CafeConnection.getSession();
 		Transaction tx = ses.beginTransaction();
-		ses.save(c);
+		ses.save(cm);
 		tx.commit();
 	}
 
