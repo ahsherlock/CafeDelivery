@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.OrderDao;
 import com.revature.dao.OrderDaoImpl;
+import com.revature.pojo.Menu;
 import com.revature.pojo.Orders;
 import com.revature.service.Service;
 
@@ -55,7 +56,7 @@ public class OrderController {
 		return false;
 	}
 
-	public static boolean getAllOrdersByUsername(HttpServletRequest req, HttpServletResponse resp)
+	public static boolean getOrdersByCustomerId(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
 		if (req.getMethod().equals("GET")) {
@@ -63,7 +64,8 @@ public class OrderController {
 			System.out.println("Reached Ticket Controller");
 			List<Integer> o = null;
 
-			int cId = (int) req.getSession().getAttribute("currentId");
+//			int cId = (int) req.getSession().getAttribute("currentId");
+			int cId = 3;
 
 			o = oService.getOrdersByCustomerId(cId);
 
@@ -77,4 +79,29 @@ public class OrderController {
 
 		return false;
 	}
+
+	public static boolean getOrderByOrderId(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
+		if (req.getMethod().equals("GET")) {
+
+			System.out.println("Reached Ticket Controller");
+			List<Menu> o = null;
+
+//			int cId = (int) req.getSession().getAttribute("currentId");
+			int oId = 4;
+
+			o = oService.getOrderByOrderId(oId);
+
+			ObjectMapper om = new ObjectMapper();
+			resp.getWriter().write(om.writeValueAsString(o)); // This will parse our Java object into a JSON
+
+			resp.setStatus(201);
+		} else {
+			resp.setStatus(405);
+		}
+
+		return false;
+	}
+
 }
