@@ -1,7 +1,6 @@
 package com.revature.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.OrderDao;
 import com.revature.dao.OrderDaoImpl;
-import com.revature.pojo.Customer;
-import com.revature.pojo.Menu;
 import com.revature.pojo.Orders;
 import com.revature.service.Service;
 
@@ -39,7 +36,6 @@ public class OrderController {
 //			o.setCustomerOrder(oService.getUserByUsername((String) req.getSession().getAttribute("Username")));
 
 			System.out.println("This is O before it goes to service: " + o);
-			
 
 			oDao.insertOrder(o);
 
@@ -65,11 +61,11 @@ public class OrderController {
 		if (req.getMethod().equals("GET")) {
 
 			System.out.println("Reached Ticket Controller");
-			List<Orders> o = null;
+			List<Integer> o = null;
 
-			String username = (String) req.getSession().getAttribute("Username");
+			int cId = (int) req.getSession().getAttribute("currentId");
 
-			o = oService.getOrdersByCustomerId(username);
+			o = oService.getOrdersByCustomerId(cId);
 
 			ObjectMapper om = new ObjectMapper();
 			resp.getWriter().write(om.writeValueAsString(o)); // This will parse our Java object into a JSON

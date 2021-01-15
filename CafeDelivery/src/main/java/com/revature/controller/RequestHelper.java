@@ -34,7 +34,7 @@ public class RequestHelper {
 			switch (req.getMethod()) {
 			case "GET":
 				System.out.println("Hit the CLIENT GET route");
-				CustomerController.getAllUsers(req, resp);
+//				CustomerController.getAllUsers(req, resp);
 				break;
 			case "POST":
 				System.out.println("Hit the CLIENT POST route");
