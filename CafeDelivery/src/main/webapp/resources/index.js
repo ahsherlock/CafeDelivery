@@ -9,7 +9,7 @@
 ////////////////////
 
 /** Registering as a new Customer
-function registerCustomer() {
+function registerCustomer(username, firstName, lastName, password) {
     let data = {
         username: ?,
         firstName: ?,
@@ -95,3 +95,36 @@ function postNewOrder() {
 
 // Calls each "GET" Fetch function above to use for manipulation
 
+// REGISTER FORM
+/**
+ * Registration requires username, firstname, lastname, and password fields.
+ * Although the user will input data into input fields of a Form element, the request will be sent using the Fetch API.
+ */
+// let username = document.querySelector('').value;
+// let firstName = document.querySelector('').value;
+// let lastName = document.querySelector('').value;
+// let password = document.querySelector('').value;
+// registerCustomer(username, firstName, lastName, password);
+
+// POST NEW ORDER:
+/**
+ * New Order requires an array of objects (created within the postNewOrder method) that represent a series of food items as well as their cost.
+ */
+// postNewOrder()
+
+// GET Order by OrderId
+/**
+ * Makes a call to retrieve a full list of food items and their costs based on what "Order" the user clicks.
+ */
+// let orderResponse = ordersByOrderId();
+// orderResponse parse()
+// Display each food item and associated Cost
+// Display Total amount and perhaps # of items
+
+// GET all orders by Customer Id
+/**
+ * This method is automatically made when the user is authenticated. It will return a list of integers that represent each Order Id.
+ */
+// let allOrders = ordersByCustomerId();
+// allOrders parse();
+// display default text or images to accompany order Ids
