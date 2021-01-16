@@ -17,7 +17,7 @@ public class MainPageController {
 			redis.forward(req, resp);
 		} else {
 			resp.sendRedirect("http://localhost:8080/CafeDelivery/api/landing");
-//		resp.setStatus(403);
+			// resp.setStatus(403);
 		}
 
 	}
