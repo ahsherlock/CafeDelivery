@@ -9,7 +9,7 @@
 	 		<!-- JDBC stuff -->
 	 		<property name = "hibernate.connection.username">postgres</property>
 	 		<property name = "hibernate.connection.password">Star1!846012</property>
-	 		<property name = "hibernate.connection.url">jdbc:postgresql://cafedb.cbxp0cu6jyua.us-east-2.rds.amazonaws.com/postgres</property>
+	 		<property name = "hibernate.connection.url">jdbc:postgresql://cafedb.cbxp0cu6jyua.us-east-2.rds.amazonaws.com/postgres?currentSchema=cafe</property>
 	 		<property name = "hibernate.connection.driver_class">org.postgresql.Driver</property>
 	 		<property name = "hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 	 		
@@ -38,9 +38,10 @@
 	 		 
 	 		 <property name="hibernate.hbm2ddl.auto">update</property>
 	 		 
-	 		 <mapping class = "com.revature.pojo.Customer"/>	
-	 	     <mapping class = "com.revature.pojo.Menu"/>
-	 		 <mapping class = "com.revature.pojo.Orders"/>
+	 		 <mapping class = "com.revature.models.Customers"/>	
+	 	     <mapping class = "com.revature.models.CafeMenu"/>
+	 		 <mapping class = "com.revature.models.Orders"/>
+	 		 <mapping class = "com.revature.models.OrderView"/>
 	 		 
 	 	</session-factory>
 	 </hibernate-configuration>
