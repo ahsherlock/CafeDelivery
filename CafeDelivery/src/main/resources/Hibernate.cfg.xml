@@ -8,8 +8,8 @@
 	 	<session-factory>
 	 		<!-- JDBC stuff -->
 	 		<property name = "hibernate.connection.username">postgres</property>
-	 		<property name = "hibernate.connection.password">Star1!846012</property>
-	 		<property name = "hibernate.connection.url">jdbc:postgresql://cafedb.cbxp0cu6jyua.us-east-2.rds.amazonaws.com/postgres</property>
+	 		<property name = "hibernate.connection.password">holywater1</property>
+	 		<property name = "hibernate.connection.url">jdbc:postgresql://reimbursementdb.cwtzuvrcq59p.us-west-1.rds.amazonaws.com/postgres</property>
 	 		<property name = "hibernate.connection.driver_class">org.postgresql.Driver</property>
 	 		<property name = "hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 	 		

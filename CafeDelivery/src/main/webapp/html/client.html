@@ -23,12 +23,57 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
+<style>
+    body {
+        background-image: url("../resources/clientBackgroundImage.jpeg");
+        height: 900px;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    img {
+        height: 300px;
+        width: 100%;
+    }
+</style>
 
 <body>
-    <div class="container">
-        <h3>WE HAVE LOGGED IN SUCCESSFULLY!!</h3>
+    <img src="../resources/welcomeText.png">
+    <div class="container mt-5">
+        <h2 class="display-1 text-center">Cafe Menu</h2>
+        <p class="text-center">We serve the best things out of all of the things</p>
     </div>
+    <div class="container">
+
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Item Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HardCoded</td>
+                    <td>$100.00</td>
+                </tr>
+                <tr>
+                    <td>LizardBrain</td>
+                    <td>$60.00</td>
+                </tr>
+                <tr>
+                    <td>Dont Wanna Know</td>
+                    <td>$100,000.00</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
 </body>
 
 </html>

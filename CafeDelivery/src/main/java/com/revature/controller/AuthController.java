@@ -93,7 +93,7 @@ public class AuthController {
 	public static void getLoginPage(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		RequestDispatcher redis = req.getRequestDispatcher("/html/login.html");
+		RequestDispatcher redis = req.getRequestDispatcher("/html/loginPage.html");
 
 		redis.forward(req, resp);
 

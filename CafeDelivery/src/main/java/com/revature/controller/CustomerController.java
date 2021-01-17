@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.pojo.Customer;
 import com.revature.service.Service;
 
@@ -18,19 +19,22 @@ public class CustomerController {
 			throws ServletException, IOException {
 
 		if (req.getMethod().equals("POST")) {
-
+/*			System.out.println(req);
 			int id = 0;
 			String username = req.getParameter("username");
 			String fname = req.getParameter("firstName");
 			String lname = req.getParameter("lastName");
 			String password = req.getParameter("password");
-
+			
 			System.out.println("Reached Employee Controller");
 
 			Customer c = new Customer(id, username, password, fname, lname);
 
-			cService.insertCustomer(c);
-
+			cService.insertCustomer(c);*/
+			ObjectMapper om = new ObjectMapper();
+			Customer newCustomer = om.readValue(req.getReader(), com.revature.pojo.Customer.class);
+			System.out.println(newCustomer);
+			cService.insertCustomer(newCustomer);
 			RequestDispatcher redis = req.getRequestDispatcher("/CafeDelivery/api/main");
 			redis.forward(req, resp);
 

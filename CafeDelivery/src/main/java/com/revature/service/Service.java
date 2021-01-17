@@ -33,6 +33,7 @@ public class Service {
 	// Register new Customer
 	public boolean insertCustomer(Customer c) {
 		System.out.println("reached Service");
+		cDao.insertCustomer(c);
 		// no longer using boolean in insertCustomer, checking is now done here
 		if (cDao.getUserByUsername(c.getUsername()) != null) {
 			System.out.println("Successfully Registered!");

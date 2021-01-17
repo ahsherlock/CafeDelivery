@@ -18,14 +18,16 @@ fetch('localhost:8080/CafeDelivery/api/customer', {
 })
 */
 function registerNewCustomer() {
+    console.log("Register Customer funtion is called...")
     let data = {
+        customerId: 0,
         username: document.getElementById("username").value,
         firstName: document.getElementById("firstname").value,
         lastName: document.getElementById("lastname").value,
         password: document.getElementById("password").value
     }
 
-    fetch('localhost:8080/CafeDelivery/api/customer', {
+    fetch('http://localhost:8080/CafeDelivery/api/customer', {
             method: 'POST',
             body: data
         })
