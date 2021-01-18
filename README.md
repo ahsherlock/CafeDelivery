@@ -62,10 +62,9 @@ A small Cafe application in which customers can order food over the internet. Cu
 
 ## Contributors
 
-Alec Sherlock
-George Yoo
-Mohammad Al Lami
-William Freeman
+Alec Sherlock \n
+George Yoo \n
+Mohammad Al Lami \n
 William He
 
 ## License
