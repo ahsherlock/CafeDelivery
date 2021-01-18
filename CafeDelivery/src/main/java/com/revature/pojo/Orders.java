@@ -24,11 +24,11 @@ public class Orders {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int orderId;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_fk")
 	private Customer customerOrder;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private List<Menu> item_name;
 
 	public Orders() {
