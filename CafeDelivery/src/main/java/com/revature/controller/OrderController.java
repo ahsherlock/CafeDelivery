@@ -13,6 +13,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.revature.dao.OrderDao;
 import com.revature.dao.OrderDaoImpl;
 import com.revature.pojo.Customer;
@@ -79,9 +80,10 @@ public class OrderController {
 
 			o = oService.getOrdersByCustomerId(cId);
 
+			System.out.println(o);
 			ObjectMapper om = new ObjectMapper();
+			om.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 			resp.getWriter().write(om.writeValueAsString(o)); // This will parse our Java object into a JSON
-
 			resp.setStatus(201);
 		} else {
 			resp.setStatus(405);
@@ -94,6 +96,8 @@ public class OrderController {
 			throws ServletException, IOException {
 
 		if (req.getMethod().equals("GET")) {
+
+			resp.setContentType("application/json");
 
 			System.out.println("Reached Ticket Controller");
 			List<Menu> o = null;

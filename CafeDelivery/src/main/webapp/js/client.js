@@ -2,7 +2,6 @@ console.log(29);
 
 window.onload = function () {
     getAllMenuItems();
-    getAllOrders();
 }
 
 function logout() {
@@ -20,12 +19,61 @@ function logout() {
 
 function getAllOrders() {
     console.log('Called getAllOrders()');
-    fetch("http://localhost:8080/CafeDelivery/api/orderbycustomer")
+    fetch("http://localhost:8080/CafeDelivery/api/orderbycustomer", {
+        method: "GET",
+        headers : { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+           }
+    })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
-        console.log('test');
+        console.log(data)
+
+        let orderHistory = {};
+        let orderArray = [];
+        let layerOne = data[0]; 
+        let orderId = 0; // Order ID
+        let itemsObj = {}; // Contains food name : food price
+
+        // console.log(data[0].length);
+        // console.log(data[0][2].length);    
+
+        // while(data[0][2]) {
+
+        // }
+
+        // for(let j = 0; j < data[0].value([2].length); j++) {
+        //     // for(let i = 0; i < data.length; i++) {
+    
+        //     //     // for(let j = 0; j < data[0].length; i++) {
+        //     //     //     console.log("These should be the food items");
+        //     //     //     console.log(data[0][j].itemName);
+        //     //     //     console.log(data[0][j].itemPrice);
+        //     //     // }
+    
+        //     //     console.log(returnObj[0][0]) // Order #1 Food Objects
+        //     //     console.log(returnObj[0][0][0]) // Order #1, Food Object 1
+        //     //     console.log(returnObj[0][0][0].itemName) // Order #1, Food Object 1, name
+        //     //     console.log(returnObj[0][0][0].itemPrice) // Order #1, Food Object 1, price
+    
+        //     //     console.log("This should be the Order Id:")
+        //     //     console.log(data[2][i])
+
+        //     //     orderArray.push
+        //     //     orderHistory.orderId = orderArray;
+        //     //     orderArray=[];
+        //     // }
+        //     orderId = data[2][j];
+        //     console.log(orderId);
+
+        // }
+        
+        for(let e in data[0][2]) {
+            console.log(e);
+        }
     })
+
 }
 
 function getAllMenuItems() {
@@ -54,7 +102,7 @@ function getAllMenuItems() {
                 trow.appendChild(td3);
                 tbody.appendChild(trow);
             }
-
+            getAllOrders();
         })
 }
 
