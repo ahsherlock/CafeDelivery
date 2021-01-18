@@ -65,9 +65,13 @@ public class RequestHelper {
 				OrderController.insertOrder(req, resp);
 				break;
 			}
+			break;
 		case "/CafeDelivery/api/orderbycustomer":
-			OrderController.getOrdersByCustomerId(req, resp);
-
+			switch (req.getMethod()) {
+			case "GET":
+				OrderController.getOrdersByCustomerId(req, resp);
+				break;
+			}
 			break;
 		default:
 //			System.out.println("Didn't hit any RH routes");

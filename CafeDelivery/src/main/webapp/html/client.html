@@ -48,7 +48,7 @@
     </div>
     <div>
         <button id="logoutButton" class="btn btn-primary" type="button" onclick="logout()">Logout</button>
-
+        <button id="order-submit" class="btn btn-warning" onclick="submitOrder()"></button>
 
 
     </div>
@@ -65,19 +65,7 @@
                         <th>Item Price</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>HardCoded</td>
-                        <td>$100.00</td>
-                    </tr>
-                    <tr>
-                        <td>LizardBrain</td>
-                        <td>$60.00</td>
-                    </tr>
-                    <tr>
-                        <td>Dont Wanna Know</td>
-                        <td>$100,000.00</td>
-                    </tr>
+                <tbody id="menu-table">
                 </tbody>
 
             </table>
@@ -85,6 +73,19 @@
 
         <div class="container">
             <button class="mt-5 btn btn-outline-light btn-block">Order From Menu</button>
+        </div>
+        <div class="container collapse" id="orderHistory">
+            <table class="orderHistory table table-dark">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Order Price</th>
+                    </tr>
+                </thead>
+                <tbody id="order-history-table">
+                </tbody>
+
+            </table>
         </div>
 
 

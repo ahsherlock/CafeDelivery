@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import com.revature.pojo.Customer;
 import com.revature.pojo.Menu;
@@ -25,12 +24,13 @@ public class OrderDaoImpl implements OrderDao {
 //		}
 //		return orderNumbers;
 //	}
-	
+
 	/**
-	Explanation: The method returns all order information relating to an customer ID as List<Object>. The object list contains all menu items associated
-	with an order, customer information, as well as the order ID. 
-	Input: Integer of customer id
-	Output: A List<Object> containing customer information, order information, menu items
+	 * Explanation: The method returns all order information relating to an customer
+	 * ID as List<Object>. The object list contains all menu items associated with
+	 * an order, customer information, as well as the order ID. Input: Integer of
+	 * customer id Output: A List<Object> containing customer information, order
+	 * information, menu items
 	 */
 
 	@Override
@@ -53,12 +53,12 @@ public class OrderDaoImpl implements OrderDao {
 		}
 		return obj;
 	}
-	
+
 	/**
-	Explanation: The method returns menu item information relating to an order ID as List<Menu>. The menu list contains all menu items associated
-	with an order
-	Input: Integer of order id
-	Output: A List<Object> containing customer information, order information, menu items
+	 * Explanation: The method returns menu item information relating to an order ID
+	 * as List<Menu>. The menu list contains all menu items associated with an order
+	 * Input: Integer of order id Output: A List<Object> containing customer
+	 * information, order information, menu items
 	 */
 
 	@Override
@@ -72,11 +72,11 @@ public class OrderDaoImpl implements OrderDao {
 
 		return oList;
 	}
-	
+
 	/**
-	Explanation: The method inserts an Orders object to the database using session.save()
-	Input: An Orders Object
-	Output: Will currently throw an exception if order's not inserted properly
+	 * Explanation: The method inserts an Orders object to the database using
+	 * session.save() Input: An Orders Object Output: Will currently throw an
+	 * exception if order's not inserted properly
 	 */
 
 	@Override
@@ -87,15 +87,14 @@ public class OrderDaoImpl implements OrderDao {
 		ses.save(o);
 		tx.commit();
 	}
-	
+
 	@Override
 	public List<Menu> getMenu() {
 		Session session = HibernateUtil.getSession();
 		List<Menu> menuList = new ArrayList<>();
-		menuList = session.createQuery("from menu",Menu.class).list();
+		menuList = session.createQuery("from Menu", Menu.class).list();
 		return menuList;
-		
-		
+
 	}
 
 }
