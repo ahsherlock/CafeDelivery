@@ -1,6 +1,7 @@
 package com.revature.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -102,6 +103,14 @@ public class OrderController {
 		}
 
 		return false;
+	}
+	public static void getMenu(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		List<Menu> menu = new ArrayList<>();
+		menu = oService.getMenu();
+		ObjectMapper om = new ObjectMapper();
+		resp.getWriter().write(om.writeValueAsString(menu));
+		resp.setStatus(201);
+		
 	}
 
 }

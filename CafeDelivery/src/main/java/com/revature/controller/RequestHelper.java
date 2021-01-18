@@ -50,6 +50,10 @@ public class RequestHelper {
 				break;
 			}
 			break;
+		case "/CafeDelivery/api/menu":
+			System.out.println("Hit API MENU Endpoint");
+			OrderController.getMenu(req, resp);
+			break;
 		case "/CafeDelivery/api/order":
 			switch (req.getMethod()) {
 			case "GET":

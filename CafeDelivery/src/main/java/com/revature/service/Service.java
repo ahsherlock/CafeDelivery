@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.dao.CustomerDao;
@@ -68,5 +69,10 @@ public class Service {
 			System.out.println("Service: Order Creation Failed");
 			return false;
 		}
+	}
+	public List<Menu> getMenu(){
+		List<Menu> menu = new ArrayList<>();
+		menu = oDao.getMenu();
+		return menu;
 	}
 }
