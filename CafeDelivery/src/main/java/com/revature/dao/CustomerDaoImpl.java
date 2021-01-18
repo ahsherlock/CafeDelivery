@@ -16,6 +16,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	public Customer getUserByUsername(String username) {
 		Session ses = HibernateUtil.getSession();
 
+
 		List<Customer> cList = new ArrayList<Customer>();
 		Query query = ses.createQuery("from Customer c where c.username = :username");
 		query.setParameter("username", username);
@@ -26,6 +27,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		} else {
 			return null;
 		}
+
 	}
 
 	@Override

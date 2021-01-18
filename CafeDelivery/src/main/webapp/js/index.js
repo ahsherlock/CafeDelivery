@@ -8,6 +8,11 @@
 // FETCH CALLS
 ////////////////////
 
+
+/**
+    Customer Logging In!
+*/
+
 /** Registering as a new Customer
 function registerCustomer(username, firstName, lastName, password) {
     let data = {

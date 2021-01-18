@@ -79,7 +79,23 @@ public class AuthController {
 	public static void getLandingPage(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		RequestDispatcher redis = req.getRequestDispatcher("/index.html");
+		RequestDispatcher redis = req.getRequestDispatcher("/html/index.html");
+
+		redis.forward(req, resp);
+
+	}
+	public static void getRegistrationPage(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
+		RequestDispatcher redis = req.getRequestDispatcher("/html/register.html");
+
+		redis.forward(req, resp);
+
+	}
+	public static void getLoginPage(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
+		RequestDispatcher redis = req.getRequestDispatcher("/html/loginPage.html");
 
 		redis.forward(req, resp);
 
