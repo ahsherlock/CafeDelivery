@@ -12,9 +12,11 @@ public class MainPageController {
 	public static void getHomePage(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// checking that session exists and session attributes match (access - true)
+
 		HttpSession session = req.getSession(false);
 		if (session != null && (Boolean) req.getSession().getAttribute("Customer")) {
 			RequestDispatcher redis = req.getRequestDispatcher("/html/client.html");
+
 			System.out.println("Logging in!");
 			redis.forward(req, resp);
 		} else {

@@ -19,20 +19,11 @@ public class CustomerController {
 			throws ServletException, IOException {
 
 		if (req.getMethod().equals("POST")) {
-/*			System.out.println(req);
-			int id = 0;
-			String username = req.getParameter("username");
-			String fname = req.getParameter("firstName");
-			String lname = req.getParameter("lastName");
-			String password = req.getParameter("password");
 			
-			System.out.println("Reached Employee Controller");
-
-			Customer c = new Customer(id, username, password, fname, lname);
-
-			cService.insertCustomer(c);*/
 			ObjectMapper om = new ObjectMapper();
-			Customer newCustomer = om.readValue(req.getReader(), com.revature.pojo.Customer.class);
+			Customer newCustomer = new Customer();
+			
+			newCustomer = om.readValue(req.getReader(), com.revature.pojo.Customer.class);
 			System.out.println(newCustomer);
 			cService.insertCustomer(newCustomer);
 			RequestDispatcher redis = req.getRequestDispatcher("/CafeDelivery/api/main");

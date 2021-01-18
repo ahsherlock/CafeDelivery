@@ -27,14 +27,17 @@ function registerNewCustomer() {
         password: document.getElementById("password").value
     }
 
+    console.log(data);
     fetch('http://localhost:8080/CafeDelivery/api/customer', {
             method: 'POST',
-            body: data
+            body: JSON.stringify(data)
         })
         .then(response => {
             console.log(response);
         })
         .then(data => {
             console.log(data);
+            window.location.replace("http://localhost:8080/CafeDelivery/api/landing");
         })
+
 }
