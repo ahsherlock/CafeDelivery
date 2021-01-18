@@ -31,9 +31,11 @@ public class AuthController {
 
 					HttpSession sesh = req.getSession();
 					sesh.setAttribute("Customer", true);
+					sesh.setAttribute("Id", c.getCustomerId());
 					sesh.setAttribute("FirstName", c.getFirstName());
 					sesh.setAttribute("LastName", c.getLastName());
 					sesh.setAttribute("Username", c.getUsername());
+					sesh.setAttribute("Password", c.getPassword());
 
 					//
 					resp.sendRedirect("http://localhost:8080/CafeDelivery/api/main");

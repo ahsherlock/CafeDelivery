@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.revature.pojo.Customer;
 import com.revature.pojo.Menu;
 import com.revature.pojo.Orders;
 import com.revature.util.HibernateUtil;
@@ -25,15 +26,24 @@ public class OrderDaoImpl implements OrderDao {
 //	}
 
 	@Override
-	public List<List<Menu>> getOrdersByCustomerId(int id) {
+	public List<Object> getOrdersByCustomerId(int id) {
 		Session ses = HibernateUtil.getSession();
 		List<Orders> orderList = null;
 		orderList = ses.createQuery("from Orders where customerOrder = :id", Orders.class).setInteger("id", id).list();
+		List<Object> obj = new ArrayList<>();
 		List<List<Menu>> orderNumbers = new ArrayList<>();
+		List<Customer> orderNumbers1 = new ArrayList<>();
+		List<Integer> orderNumbers2 = new ArrayList<>();
+
 		for (Orders o : orderList) {
 			orderNumbers.add(o.getMenu());
+			orderNumbers1.add(o.getCustomerOrder());
+			orderNumbers2.add(o.getOrderId());
+			obj.add(orderNumbers);
+			obj.add(orderNumbers1);
+			obj.add(orderNumbers2);
 		}
-		return orderNumbers;
+		return obj;
 	}
 
 	@Override

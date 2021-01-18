@@ -11,7 +11,7 @@ public interface OrderDao {
 	 * retrieves a list of all orders placed by the user
 	 * 
 	 */
-	public List<List<Menu>> getOrdersByCustomerId(int id);
+	public List<Object> getOrdersByCustomerId(int id);
 
 	/**
 	 * Selects an order from the current user by the order id

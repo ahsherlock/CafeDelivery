@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.pojo.Customer;
 import com.revature.service.Service;
 
@@ -19,15 +20,18 @@ public class CustomerController {
 
 		if (req.getMethod().equals("POST")) {
 
-			int id = 0;
-			String username = req.getParameter("username");
-			String fname = req.getParameter("firstName");
-			String lname = req.getParameter("lastName");
-			String password = req.getParameter("password");
+			ObjectMapper om = new ObjectMapper();
+			Customer c = om.readValue(req.getReader(), com.revature.pojo.Customer.class);
+
+//			int id = 0;
+//			String username = req.getParameter("username");
+//			String fname = req.getParameter("firstName");
+//			String lname = req.getParameter("lastName");
+//			String password = req.getParameter("password");
 
 			System.out.println("Reached Employee Controller");
 
-			Customer c = new Customer(id, username, password, fname, lname);
+//			Customer c = new Customer(id, username, password, fname, lname);
 
 			cService.insertCustomer(c);
 
