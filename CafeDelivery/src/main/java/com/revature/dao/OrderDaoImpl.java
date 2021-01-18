@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import com.revature.pojo.Customer;
 import com.revature.pojo.Menu;
@@ -85,6 +86,16 @@ public class OrderDaoImpl implements OrderDao {
 
 		ses.save(o);
 		tx.commit();
+	}
+	
+	@Override
+	public List<Menu> getMenu() {
+		Session session = HibernateUtil.getSession();
+		List<Menu> menuList = new ArrayList<>();
+		menuList = session.createQuery("from menu",Menu.class).list();
+		return menuList;
+		
+		
 	}
 
 }
