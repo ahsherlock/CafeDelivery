@@ -1,7 +1,8 @@
 package com.revature.models;
 
 import java.time.LocalDate;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -36,9 +37,9 @@ public class Orders {
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "order_details", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "item_id") })
-	Set<CafeMenu> cafeMenu = new HashSet<>();
+	private List<CafeMenu> cafeMenu = new ArrayList<>();
 
-	public Orders(int id, LocalDate orderDate, Customers customers, Set<CafeMenu> cafeMenu) {
+	public Orders(int id, LocalDate orderDate, Customers customers, List<CafeMenu> cafeMenu) {
 		super();
 		this.id = id;
 		this.orderDate = orderDate;
@@ -46,7 +47,6 @@ public class Orders {
 		this.cafeMenu = cafeMenu;
 	}
 
-	// Add var args Constructors later as needed
 
 	public Orders() {
 		super();
@@ -76,11 +76,11 @@ public class Orders {
 		this.customers = customers;
 	}
 
-	public Set<CafeMenu> getCafeMenu() {
+	public List<CafeMenu> getCafeMenu() {
 		return cafeMenu;
 	}
 
-	public void setCafeMenu(Set<CafeMenu> cafeMenu) {
+	public void setCafeMenu(List<CafeMenu> cafeMenu) {
 		this.cafeMenu = cafeMenu;
 	}
 

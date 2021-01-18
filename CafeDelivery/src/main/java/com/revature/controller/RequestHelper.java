@@ -55,7 +55,11 @@ public class RequestHelper {
 			}
 		case "/CafeDelivery/api/orderbycustomer":
 			OrderController.getOrdersByCustomerId(req, resp);
+			break;
 
+		case "/CafeDelivery/api/getMenu":
+			OrderController.getMenu(req, resp);
+			System.out.println("Get Menu route hit!");
 			break;
 		default:
 //			System.out.println("Didn't hit any RH routes");

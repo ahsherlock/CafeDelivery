@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.revature.pojo.Customer;
+import com.revature.models.Customers;
 import com.revature.service.Service;
 
 public class AuthController {
@@ -19,7 +19,7 @@ public class AuthController {
 
 		if (req.getMethod().equals("POST")) {
 
-			Customer c = null;
+			Customers c = null;
 
 			String username = req.getParameter("username");
 
@@ -31,9 +31,11 @@ public class AuthController {
 
 					HttpSession sesh = req.getSession();
 					sesh.setAttribute("Customer", true);
+					sesh.setAttribute("Id", c.getId());
 					sesh.setAttribute("FirstName", c.getFirstName());
 					sesh.setAttribute("LastName", c.getLastName());
 					sesh.setAttribute("Username", c.getUsername());
+					sesh.setAttribute("Password", c.getPassword());
 
 					//
 					resp.sendRedirect("http://localhost:8080/CafeDelivery/api/main");

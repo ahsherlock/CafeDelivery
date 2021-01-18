@@ -13,29 +13,18 @@ public class CafeMenu {
 
 	@Id
 	@Column(name = "item_id")
-	@GeneratedValue(strategy = GenerationType.AUTO) // Might be Identify
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int itemId;
 
-	@Column(name = "item_name", nullable = false, unique = true)
+	@Column(name = "item_name", nullable = false, unique = false)
 	private String itemName;
 
 	@Column(name = "item_price", nullable = false)
 	private double itemPrice;
 
-//	@ManyToMany(mappedBy = "cafeMenu")
-//	private Set<Orders> orders = new HashSet<>();
-
 	public CafeMenu() {
 		super();
 	}
-
-//	public CafeMenu(int itemId, String itemName, double itemPrice, Set<Orders> orders) {
-//		super();
-//		this.itemId = itemId;
-//		this.itemName = itemName;
-//		this.itemPrice = itemPrice;
-//		this.orders = orders;
-//	}
 
 	public CafeMenu(int itemId, String itemName, double itemPrice) {
 		super();
@@ -72,19 +61,5 @@ public class CafeMenu {
 	public String toString() {
 		return "CafeMenu [itemId=" + itemId + ", itemName=" + itemName + ", itemPrice=" + itemPrice + "]";
 	}
-
-//	public Set<Orders> getOrders() {
-//		return orders;
-//	}
-//
-//	public void setOrders(Set<Orders> orders) {
-//		this.orders = orders;
-//	}
-
-//	@Override
-//	public String toString() {
-//		return "CafeMenu [itemId=" + itemId + ", itemName=" + itemName + ", itemPrice=" + itemPrice + ", orders="
-//				+ orders + "]";
-//	}
 
 }

@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.pojo.Customer;
+import com.revature.models.Customers;
 import com.revature.service.Service;
 
 public class CustomerController {
@@ -27,7 +27,7 @@ public class CustomerController {
 
 			System.out.println("Reached Employee Controller");
 
-			Customer c = new Customer(id, username, password, fname, lname);
+			Customers c = new Customers(id, username, password, fname, lname);
 
 			cService.insertCustomer(c);
 

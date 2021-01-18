@@ -1,6 +1,8 @@
 package com.revature.controller;
 
+import java.awt.Menu;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -8,18 +10,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.dao.OrderDao;
-import com.revature.dao.OrderDaoImpl;
-import com.revature.pojo.Menu;
-import com.revature.pojo.Orders;
+import com.revature.models.CafeMenu;
+import com.revature.models.Orders;
 import com.revature.service.Service;
 
 public class OrderController {
 
 	private static Service oService = new Service();
-	private static OrderDao oDao = new OrderDaoImpl();
-//	private static Logger log = Logger.getLogger(OrderController.class);
+	private static Logger log = Logger.getLogger(OrderController.class);
 
 	public static boolean insertOrder(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -27,7 +28,7 @@ public class OrderController {
 
 			ObjectMapper om = new ObjectMapper();
 
-			Orders o = om.readValue(req.getReader(), com.revature.pojo.Orders.class);
+			Orders o = om.readValue(req.getReader(), com.revature.models.Orders.class);
 
 			System.out.println("Reached Order Controller");
 			System.out.println(o);
@@ -38,7 +39,8 @@ public class OrderController {
 
 			System.out.println("This is O before it goes to service: " + o);
 
-			oDao.insertOrder(o);
+			o.setOrderDate(LocalDate.now());
+			oService.insertOrder(o);
 
 			// This needs to change to the customer asset, not the index
 			RequestDispatcher redis = req.getRequestDispatcher("/index.html");
@@ -62,15 +64,28 @@ public class OrderController {
 		if (req.getMethod().equals("GET")) {
 
 			System.out.println("Reached Ticket Controller");
-			List<Integer> o = null;
+			List<Orders> oList = null;
 
 //			int cId = (int) req.getSession().getAttribute("currentId");
-			int cId = 3;
+			int cId = 1;
 
-			o = oService.getOrdersByCustomerId(cId);
+			oList = oService.getOrdersByCustomerId(cId);
+
+//			int x = -1;
+//			System.out.println("cId   cName       oId   oDate        iName     iPrice");
+//			for (Orders o : oList) {
+//				if (x != o.getId()) {
+//					for (CafeMenu c : o.getCafeMenu()) {
+//						System.out.printf("%2d    %9s    %2d   %10s   %6s    %5.2f \n", o.getCustomers().getId(),
+//								o.getCustomers().getFirstName(), o.getId(), o.getOrderDate(), c.getItemName(),
+//								c.getItemPrice());
+//					}
+//					x = o.getId();
+//				}
+//			}
 
 			ObjectMapper om = new ObjectMapper();
-			resp.getWriter().write(om.writeValueAsString(o)); // This will parse our Java object into a JSON
+			resp.getWriter().write(om.writeValueAsString(oList)); // This will parse our Java object into a JSON
 
 			resp.setStatus(201);
 		} else {
@@ -102,6 +117,18 @@ public class OrderController {
 		}
 
 		return false;
+	}
+
+	public static List<CafeMenu> getMenu(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
+		List<CafeMenu> m = null;
+
+		ObjectMapper om = new ObjectMapper();
+		m = oService.getMenu();
+		System.out.println("This is the menu: " + m);
+		resp.getWriter().write(om.writeValueAsString(m));
+		return m;
 	}
 
 }

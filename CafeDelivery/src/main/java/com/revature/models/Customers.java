@@ -17,7 +17,7 @@ public class Customers {
 
 	@Id
 	@Column(name = "c_id")
-	@GeneratedValue(strategy = GenerationType.AUTO) // Might be Identify
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	@Column(name = "c_firstname", nullable = false)
@@ -35,14 +35,13 @@ public class Customers {
 	@OneToMany(mappedBy = "customers")
 	private Set<Orders> orders = new HashSet<>();
 
-	public Customers(int id, String firstName, String lastName, String username, String password, Set<Orders> orders) {
+	public Customers(int id, String firstName, String lastName, String username, String password) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
-		this.orders = orders;
 	}
 
 	public Customers() {
