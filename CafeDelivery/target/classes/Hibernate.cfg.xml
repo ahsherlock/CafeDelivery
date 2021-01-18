@@ -15,7 +15,7 @@
 	 		
 	 		<!-- Additional Hibernate Options -->
 	 		
-	 		<property name = "hibernate.show_sql">false</property> <!-- Show the sql scripts being executed -->
+	 		<property name = "hibernate.show_sql">true</property> <!-- Show the sql scripts being executed -->
 	 		<property name="hibernate.format_sql">true</property> <!-- makes it more human readable -->
 	 		
 	 		<!--  Connection Pool 
@@ -36,7 +36,7 @@
 	 		 		
 	 		 -->
 	 		 
-	 		 <property name="hibernate.hbm2ddl.auto">update</property>
+	 		 <property name="hibernate.hbm2ddl.auto">create</property>
 	 		 
 	 		 <mapping class = "com.revature.models.Customers"/>	
 	 	     <mapping class = "com.revature.models.CafeMenu"/>

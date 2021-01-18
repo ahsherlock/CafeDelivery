@@ -66,7 +66,7 @@ public class OrderController {
 			System.out.println("Reached Ticket Controller");
 			List<Orders> oList = null;
 
-//			int cId = (int) req.getSession().getAttribute("currentId");
+//			int cId = (int) req.getSession().getAttribute("Id");
 			int cId = 1;
 
 			oList = oService.getOrdersByCustomerId(cId);
@@ -76,9 +76,6 @@ public class OrderController {
 //			for (Orders o : oList) {
 //				if (x != o.getId()) {
 //					for (CafeMenu c : o.getCafeMenu()) {
-//						System.out.printf("%2d    %9s    %2d   %10s   %6s    %5.2f \n", o.getCustomers().getId(),
-//								o.getCustomers().getFirstName(), o.getId(), o.getOrderDate(), c.getItemName(),
-//								c.getItemPrice());
 //					}
 //					x = o.getId();
 //				}
@@ -106,7 +103,7 @@ public class OrderController {
 //			int cId = (int) req.getSession().getAttribute("currentId");
 			int oId = 4;
 
-			o = oService.getOrderByOrderId(oId);
+//			o = oService.getOrderByOrderId(oId);
 
 			ObjectMapper om = new ObjectMapper();
 			resp.getWriter().write(om.writeValueAsString(o)); // This will parse our Java object into a JSON

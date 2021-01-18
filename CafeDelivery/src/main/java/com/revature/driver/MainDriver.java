@@ -48,7 +48,7 @@ public class MainDriver {
 		 * CREATE ORDER
 		 **************************************************/
 
-//		// Prepare order details in ArrayList
+		// Prepare order details in ArrayList
 		List<CafeMenu> oDetails1 = new ArrayList<>();
 		List<CafeMenu> oDetails2 = new ArrayList<>();
 		List<CafeMenu> oDetails3 = new ArrayList<>();
@@ -59,13 +59,13 @@ public class MainDriver {
 		oDetails3.add(item2); // Salmon
 		oDetails3.add(item5); // Water
 		oDetails3.add(item5); // Water
-//
-//		// Use above ArrayList as a parameter for Orders constructor
+
+		// Use above ArrayList as a parameter for Orders constructor
 		Orders ord1 = new Orders(0, LocalDate.parse("2021-01-10"), cust1, oDetails1);
 		Orders ord2 = new Orders(0, LocalDate.parse("2021-01-10"), cust2, oDetails2);
 		Orders ord3 = new Orders(0, LocalDate.parse("2021-01-11"), cust1, oDetails3);
-//
-//		// Send above objects to insertOrder in DAO layer
+
+		// Send above objects to insertOrder in DAO layer
 		oDao.insertOrder(ord1);
 		oDao.insertOrder(ord2);
 		oDao.insertOrder(ord3);
@@ -90,14 +90,15 @@ public class MainDriver {
 		// Customer #1 Orders
 		oList = oDao.getOrdersByCustomerId(1);
 		System.out.println("\nCustomer #1 Orders: ");
+		System.out.println(oList);
 
 		int x = -1;
 		System.out.println("cId   cName       oId   oDate        iName     iPrice");
 		for (Orders o : oList) {
-			System.out.println(o);
+//			System.out.println("This is O: " + o);
 			if (x != o.getId()) {
 				for (CafeMenu c : o.getCafeMenu()) {
-					System.out.println(c);
+					System.out.println("This is C: " + c);
 //					System.out.printf("%2d    %9s    %2d   %10s   %6s    %5.2f \n", o.getCustomers().getId(),
 //							o.getCustomers().getFirstName(), o.getId(), o.getOrderDate(), c.getItemName(),
 //							c.getItemPrice());

@@ -17,11 +17,6 @@ public class Service {
 	private static OrderDao oDao = new OrderDaoImpl();
 	private static CafeMenuDao cmDao = new CafeMenuDaoImpl();
 
-	// Get All Customers (For validation and authentication)
-//	public List<Customer> getAllUsers() {
-//		return cDao.getAllUsers();
-//	}
-
 	// Get Customer by Email
 	public Customers getUserByUsername(String username) {
 		Customers c = cDao.getUserByUsername(username);
