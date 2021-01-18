@@ -44,7 +44,7 @@ public class Service {
 	}
 
 	// Get all Orders by Username
-	public List<Integer> getOrdersByCustomerId(int id) {
+	public List<Menu> getOrdersByCustomerId(int id) {
 		System.out.println("Reached Service");
 		return oDao.getOrdersByCustomerId(id);
 	}

@@ -62,7 +62,7 @@ public class OrderController {
 		if (req.getMethod().equals("GET")) {
 
 			System.out.println("Reached Ticket Controller");
-			List<Integer> o = null;
+			List<Menu> o = null;
 
 //			int cId = (int) req.getSession().getAttribute("currentId");
 			int cId = 3;

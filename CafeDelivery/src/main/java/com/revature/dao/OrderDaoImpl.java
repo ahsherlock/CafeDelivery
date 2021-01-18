@@ -18,13 +18,14 @@ import com.revature.util.HibernateUtil;
 public class OrderDaoImpl implements OrderDao{
 
 	@Override
-	public List<Integer> getOrdersByCustomerId(int id) {
+	public List<List<Menu>> getOrdersByCustomerId(int id) {
 		Session ses = HibernateUtil.getSession();
 		List<Orders> orderList = null;
 		orderList = ses.createQuery("from Orders where customerOrder = :id", Orders.class).setInteger("id", id).list();
-		List<Integer> orderNumbers = new ArrayList<Integer>();
+		List<List<Menu>> orderNumbers = new ArrayList<>();
 		for (Orders o : orderList) {
-			orderNumbers.add(o.getOrderId());
+			orderNumbers.add(o.getMenu());
+			System.out.println(o.getCustomerOrder());
 		}
 		return orderNumbers;
 	}

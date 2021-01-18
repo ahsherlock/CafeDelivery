@@ -14,6 +14,7 @@ import com.revature.pojo.Orders;
 public class MainDriver {
 
 	public static void main(String[] args) {
+		/**
 		CustomerDao cDao = new CustomerDaoImpl();
 		OrderDao oDao = new OrderDaoImpl();
 //		
@@ -36,6 +37,7 @@ public class MainDriver {
 //        Orders ord2 = new Orders(3,cust, menuList);
 
 		oDao.insertOrder(ord);
+		*/
 //        oDao.insertOrder(ord1);
 //        oDao.insertOrder(ord2);
 //        
@@ -50,6 +52,10 @@ public class MainDriver {
 //        oDao.insertOrder(new Orders(4,cust, menuList));
 // 
 //        System.out.println(oDao.getOrdersByCustomerId(1));
+		
+		OrderDao oDao = new OrderDaoImpl();
+		System.out.println(oDao.getOrdersByCustomerId(5));
+
 
 	}
 
