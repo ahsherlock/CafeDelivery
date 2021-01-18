@@ -43,7 +43,7 @@ public class Service {
 //			System.out.println("User with that email already exists!");
 //			return false;
 //		}
-		cDao.insertCustomer(c);
+//		cDao.insertCustomer(c);
 		return true;
 	}
 
@@ -70,7 +70,8 @@ public class Service {
 			return false;
 		}
 	}
-	public List<Menu> getMenu(){
+
+	public List<Menu> getMenu() {
 		List<Menu> menu = new ArrayList<>();
 		menu = oDao.getMenu();
 		return menu;
