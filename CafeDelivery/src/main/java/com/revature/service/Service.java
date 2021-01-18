@@ -34,17 +34,19 @@ public class Service {
 	public boolean insertCustomer(Customer c) {
 		System.out.println("reached Service");
 		// no longer using boolean in insertCustomer, checking is now done here
-		if (cDao.getUserByUsername(c.getUsername()) != null) {
-			System.out.println("Successfully Registered!");
-			return true;
-		} else {
-			System.out.println("User with that email already exists!");
-			return false;
-		}
+//		if (cDao.getUserByUsername(c.getUsername()) != null) {
+//			System.out.println("Successfully Registered!");
+//			return true;
+//		} else {
+//			System.out.println("User with that email already exists!");
+//			return false;
+//		}
+		cDao.insertCustomer(c);
+		return true;
 	}
 
 	// Get all Orders by Username
-	public List<Integer> getOrdersByCustomerId(int id) {
+	public List<Object> getOrdersByCustomerId(int id) {
 		System.out.println("Reached Service");
 		return oDao.getOrdersByCustomerId(id);
 	}
