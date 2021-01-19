@@ -17,6 +17,7 @@ function logout() {
         })
 }
 
+
 function getAllOrders() {
     console.log('Called getAllOrders()');
     fetch("http://localhost:8080/CafeDelivery/api/orderbycustomer", {
@@ -31,48 +32,59 @@ function getAllOrders() {
         console.log(data)
 
         let orderHistory = {};
-        let orderArray = [];
-        let layerOne = data[0]; 
         let orderId = 0; // Order ID
-        let itemsObj = {}; // Contains food name : food price
+        let orderArray = []; // Contains food name : food price
 
-        // console.log(data[0].length);
-        // console.log(data[0][2].length);    
 
-        // while(data[0][2]) {
+        for(let i = 0; i < data[1].length; i++) {
 
-        // }
+            let tbody  = document.querySelector("#order-history-table");
+            let trow = document.createElement('tr');
+            // let td1 = document.createElement('td');
+            // let td1 = document.createElement('td');
+            
+            // let td2 = document.createElement('td');
+            // let td2 = document.createElement('td');
 
-        // for(let j = 0; j < data[0].value([2].length); j++) {
-        //     // for(let i = 0; i < data.length; i++) {
-    
-        //     //     // for(let j = 0; j < data[0].length; i++) {
-        //     //     //     console.log("These should be the food items");
-        //     //     //     console.log(data[0][j].itemName);
-        //     //     //     console.log(data[0][j].itemPrice);
-        //     //     // }
-    
-        //     //     console.log(returnObj[0][0]) // Order #1 Food Objects
-        //     //     console.log(returnObj[0][0][0]) // Order #1, Food Object 1
-        //     //     console.log(returnObj[0][0][0].itemName) // Order #1, Food Object 1, name
-        //     //     console.log(returnObj[0][0][0].itemPrice) // Order #1, Food Object 1, price
-    
-        //     //     console.log("This should be the Order Id:")
-        //     //     console.log(data[2][i])
 
-        //     //     orderArray.push
-        //     //     orderHistory.orderId = orderArray;
-        //     //     orderArray=[];
-        //     // }
-        //     orderId = data[2][j];
-        //     console.log(orderId);
+            let td3 = document.createElement('td');
 
-        // }
-        
-        for(let e in data[0][2]) {
-            console.log(e);
+            td3.innerText = data[1][i];
+
+            // console.log("test 1:" +data[0][i].itemName);
+            // console.log("test 2: " + data[0][i][0].itemName);
+
+            let count = 0;
+            let layer1 = data[0]
+            layer1[0].forEach( e => {
+                count++;
+            })
+            console.log(count);
+            
+            for(let j = 0; j < count; j ++) {
+
+                // Object.keys(data[0][i][j]).forEach(cell => {
+                //     console.log(data[0][i][j][cell]);
+                // })
+
+                let td1 = document.createElement('td');
+                let td2 = document.createElement('td');
+
+                td1.innerText = data[0][i][j].itemName;
+                console.log(data[0][i][j].itemName);
+                td2.innerText = `${data[0][i][j].itemPrice}`;
+                console.log(data[0][i][j].itemPrice);
+
+                trow.appendChild(td1);
+                trow.appendChild(td2);
+                trow.appendChild(td3);
+            }
+            tbody.appendChild(trow);
         }
-    })
+
+
+        })
+        
 
 }
 
