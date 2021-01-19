@@ -75,8 +75,8 @@ public class OrderController {
 			System.out.println("Reached Ticket Controller");
 			List<Object> o = null;
 
-//			int cId = (int) req.getSession().getAttribute("Id");
-			int cId = 1;
+			int cId = (int) req.getSession().getAttribute("Id");
+//			int cId = 1;
 
 			o = oService.getOrdersByCustomerId(cId);
 
