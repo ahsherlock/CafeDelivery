@@ -50,7 +50,9 @@ public class Service {
 	// Get all Orders by Username
 	public List<Object> getOrdersByCustomerId(int id) {
 		System.out.println("Reached Service");
-		return oDao.getOrdersByCustomerId(id);
+		List<Object> li = oDao.getOrdersByCustomerId(id);
+
+		return li;
 	}
 
 	public List<Menu> getOrderByOrderId(int id) {
