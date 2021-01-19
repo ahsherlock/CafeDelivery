@@ -10,6 +10,7 @@ import com.revature.dao.OrderDaoImpl;
 import com.revature.pojo.Customer;
 import com.revature.pojo.Menu;
 import com.revature.pojo.Orders;
+import com.revature.service.Service;
 
 public class MainDriver {
 
@@ -17,7 +18,9 @@ public class MainDriver {
 
 		CustomerDao cDao = new CustomerDaoImpl();
 		OrderDao oDao = new OrderDaoImpl();
+		Service uServe = new Service();
 //		
+		/*
 		Customer cust = new Customer(1, "temp", "temp", "temp", "temp");
 		Customer cust2 = new Customer(2, "123", "123", "123", "123");
 		cDao.insertCustomer(cust);
@@ -58,9 +61,11 @@ public class MainDriver {
 		oDao.insertOrder(new Orders(4, cust, menuList));
 
 		System.out.println(oDao.getOrdersByCustomerId(1));
+		*/
 
 //		OrderDao oDao = new OrderDaoImpl();
-//		System.out.println(oDao.getOrdersByCustomerId(5));
+//		System.out.println(oDao.getOrdersByCustomerId(1));
+		System.out.println(uServe.getOrdersByCustomerId(1));
 
 //		System.out.println(oDao.getOrdersByCustomerId(2));
 	}

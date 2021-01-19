@@ -40,17 +40,14 @@ public class OrderDaoImpl implements OrderDao {
 		orderList = ses.createQuery("from Orders where customerOrder = :id", Orders.class).setInteger("id", id).list();
 		List<Object> obj = new ArrayList<>();
 		List<List<Menu>> orderNumbers = new ArrayList<>();
-		List<Customer> orderNumbers1 = new ArrayList<>();
 		List<Integer> orderNumbers2 = new ArrayList<>();
 
 		for (Orders o : orderList) {
 			orderNumbers.add(o.getMenu());
-			orderNumbers1.add(o.getCustomerOrder());
 			orderNumbers2.add(o.getOrderId());
-			obj.add(orderNumbers);
-			obj.add(orderNumbers1);
-			obj.add(orderNumbers2);
 		}
+		obj.add(orderNumbers);
+		obj.add(orderNumbers2);
 		return obj;
 	}
 
